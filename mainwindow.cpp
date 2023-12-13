@@ -41,8 +41,6 @@ void MainWindow::on_radioButton_4_clicked()
     return;
 }
 
-
-
 void MainWindow::on_pushButton_1_clicked()
 {
     //Button Start
@@ -112,9 +110,20 @@ void MainWindow::on_pushButton_1_clicked()
 
 }
 
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->graph->graph(0)->data()->clear();
+    ui->graph->replot();
 
+    ui->label_11->setText("0");
+    ui->label_12->setText("0");
+    ui->label_13->setText("0");
+}
 
-
-
-
+void MainWindow::on_pushButton_clicked()
+{
+    ui->label_11->setText(QString::number(distance));
+    ui->label_12->setText(QString::number(y_max));
+    ui->label_13->setText(QString::number(end_speed));
+}
 
