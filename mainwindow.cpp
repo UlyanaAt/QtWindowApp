@@ -15,6 +15,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//setting accuracy
 void MainWindow::on_radioButton_1_clicked()
 {
     dt = 0.5;
@@ -41,9 +42,11 @@ void MainWindow::on_radioButton_4_clicked()
     return;
 }
 
+  //Button Start
+
 void MainWindow::on_pushButton_1_clicked()
 {
-    //Button Start
+
     //Enter values
 
     a = ui->numAngle->value();
@@ -68,11 +71,14 @@ void MainWindow::on_pushButton_1_clicked()
     }
     else
     {
+        // creating lists for coordinates
         QList<double> X;
         QList<double> Y;
+
+        //Calculations
         while (y>=0)
         {
-            //Calculations
+
             root = sqrt(vx * vx + vy * vy);
             vx = vx - k * vx * root * dt;
             vy = vy - (g + k * vy * root) * dt;
@@ -90,16 +96,18 @@ void MainWindow::on_pushButton_1_clicked()
             }
         }
 
+        //Convert lists to vectors
         int n = X.size();
         QVector<double> Xs(n);
         QVector<double> Ys(n);
         Xs = X.toVector();
         Ys = Y.toVector();
 
-        // создаем график и добавляем данные:
+        //Creating graph and add coordinates
         ui->graph->addGraph();
         ui->graph->graph(0)->setData(Xs,Ys);
-        // задаем имена осей координат
+
+        //Name axis and plotting graph
         ui->graph->xAxis->setLabel("Distance");
         ui->graph->yAxis->setLabel("Height");
         ui->graph->replot();
